@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#fbf8f0" />
+  <meta name="description" content="목이 거북해지면, 바름이네 놀러 와 — 자세 알림과 3분 쉼 콘텐츠" />
+  <title>바름이네</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="assets/icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div id="app">
+
+  <!-- ========== 로그인 표지 ========== -->
+  <section class="screen" id="s-login">
+    <div class="login">
+      <h1 class="login-title">바름이네</h1>
+      <p class="login-sub">목이 거북해지면, 바름이네 놀러 와</p>
+      <img class="login-house" src="assets/img/house_front.webp" alt="바름이네 집" />
+      <div class="bubble green row">
+        <img class="avatar a44" src="assets/img/bareum_face.webp" alt="" />
+        <p>어서 와!<br />3분만 쉬어 가자.</p>
+      </div>
+      <button class="btn primary" data-go="start">이메일로 들어갈래</button>
+      <button class="btn secondary" data-go="start">처음 왔어 · 가입하기</button>
+      <button class="link" data-go="start">먼저 둘러볼래</button>
+    </div>
+  </section>
+
+  <!-- ========== 첫 만남 (온보딩) ========== -->
+  <section class="screen" id="s-onboard">
+    <header class="ob-head">
+      <h2>바름이네</h2>
+      <button class="link small" id="ob-skip">건너뛰기</button>
+    </header>
+    <div class="dots" id="ob-dots"><i></i><i></i><i></i><i></i></div>
+
+    <div class="ob-step" data-step="0">
+      <div class="bubble green row big">
+        <img class="avatar a42" src="assets/img/bareum_face.webp" alt="" />
+        <p>숙이야, 고개가<br />자꾸 숙여지지?</p>
+      </div>
+      <img class="ob-img" src="assets/img/sooki_phone.webp" alt="휴대폰을 보며 고개 숙인 숙이" />
+      <p class="caption">나랑 잠깐 쉬어 가자.</p>
+      <button class="btn primary" data-ob-next>바름아, 반가워</button>
+    </div>
+
+    <div class="ob-step" data-step="1">
+      <div class="bubble green row big">
+        <img class="avatar a42" src="assets/img/bareum_face.webp" alt="" />
+        <p>너랑 닮은 모습은?</p>
+      </div>
+      <div class="pick">
+        <button class="pick-card" data-char="sukdol">
+          <span class="check"></span>
+          <img src="assets/img/sukdol_card.webp" alt="" />
+          <b>숙돌이</b>
+        </button>
+        <button class="pick-card" data-char="sooki">
+          <span class="check"></span>
+          <img src="assets/img/sooki_card.webp" alt="" />
+          <b>숙이</b>
+        </button>
+      </div>
+      <p class="caption">내 정보에서 언제든 바꿀 수 있어.</p>
+      <button class="btn primary" data-ob-next>이 모습으로 할래</button>
+    </div>
+
+    <div class="ob-step" data-step="2">
+      <div class="bubble pink row big">
+        <img class="avatar a42" src="assets/img/bareum_face.webp" alt="" />
+        <p>지칠 땐 우리 집에 와.<br />3분이면 돼!</p>
+      </div>
+      <img class="ob-img tall" src="assets/img/bareum_wave.webp" alt="목도리를 두르고 초대하는 바름이" />
+      <p class="caption">목·눈·몸·잠, 함께 쉬어 가자.</p>
+      <button class="btn primary" data-ob-next>어떤 집인지 궁금해</button>
+    </div>
+
+    <div class="ob-step" data-step="3">
+      <div class="bubble green row big">
+        <img class="avatar a42" src="assets/img/bareum_face.webp" alt="" />
+        <p>쉬어 갈 때가 되면<br />내가 알려 줄게.</p>
+      </div>
+      <img class="ob-small" src="assets/img/bareum_full.webp" alt="손 흔드는 바름이" />
+      <div class="card perm">
+        <p class="perm-title"><svg class="ic"><use href="#i-shield"/></svg>카메라 영상은 저장하지 않아</p>
+        <p class="perm-desc">자세·거리·사용 시간을 살펴볼게.<br />권한은 내 정보에서 바꿀 수 있어.</p>
+      </div>
+      <button class="btn primary" id="ob-perm">센서 권한 허용할게</button>
+    </div>
+  </section>
+
+  <!-- ========== 메인 (탭) ========== -->
+  <section class="screen tabbed" id="s-home">
+    <div class="scroll">
+      <p class="date" id="home-date">11월 17일 화요일</p>
+      <h2 class="hello">어서 와, <span data-name-voc>숙이야</span>!</h2>
+      <p class="sub">어디서 쉬어 갈래?</p>
+
+      <div class="house">
+        <img src="assets/img/house_rooms.webp" alt="거실, 창가, 마당, 침실이 있는 바름이네" />
+        <button class="room tl" data-room="bed"><b>침실</b><small>잠 쉼</small></button>
+        <button class="room tr" data-room="window"><b>창가</b><small>눈 쉼</small></button>
+        <button class="room bl active" data-room="living"><b>거실</b><small>목 쉼</small></button>
+        <button class="room br" data-room="yard"><b>마당</b><small>몸 쉼</small></button>
+      </div>
+
+      <div class="sec-head">
+        <h3>오늘의 습관</h3>
+        <span class="live" id="live-chip"><i></i><em id="live-text">센서 대기 중</em></span>
+      </div>
+      <div class="card stats">
+        <div><small>고개 숙임</small><b id="st-down">0분</b></div>
+        <div><small>화면 가까이</small><b id="st-close">0번</b></div>
+        <div><small>가장 오래 사용</small><b id="st-long">0분</b></div>
+        <div><small>자정 이후 사용</small><b id="st-night">0분</b></div>
+      </div>
+
+      <button class="invite-card" id="home-invite">
+        <img class="avatar a52" src="assets/img/bareum_face.webp" alt="" />
+        <p id="home-invite-text">거실에서 3분만<br />목 풀고 갈래?</p>
+      </button>
+    </div>
+  </section>
+
+  <section class="screen tabbed" id="s-record">
+    <div class="scroll">
+      <h2 class="page-title">쉼 기록</h2>
+      <p class="sub">오늘 하루, <span data-name>숙이</span>의 자세를 모아 봤어.</p>
+      <div class="card">
+        <div class="row-between"><h3>시간대별 고개 숙임</h3><small class="muted">오늘 · 분</small></div>
+        <div class="hours" id="rec-hours"></div>
+        <div class="hours-axis"><span>0시</span><span>6시</span><span>12시</span><span>18시</span><span>24시</span></div>
+      </div>
+      <div class="card">
+        <div class="row-between"><h3>지금 자세</h3><small class="muted" id="rec-mode">센서</small></div>
+        <div class="tilt">
+          <div class="tilt-phone" id="tilt-phone"></div>
+          <div>
+            <b id="tilt-angle">--°</b>
+            <p id="tilt-label" class="muted">휴대폰을 들어 볼래?</p>
+          </div>
+        </div>
+      </div>
+      <h3 class="list-title">최근 쉼</h3>
+      <ul class="rest-list" id="rec-list"></ul>
+    </div>
+  </section>
+
+  <section class="screen tabbed" id="s-diary">
+    <div class="scroll">
+      <div class="week-sel">
+        <button class="icon-btn" id="wk-prev" aria-label="이전 주"><svg class="ic"><use href="#i-back"/></svg></button>
+        <b id="wk-label">11월 셋째 주</b>
+        <button class="icon-btn" id="wk-next" aria-label="다음 주"><svg class="ic flip"><use href="#i-back"/></svg></button>
+      </div>
+      <div class="bubble pink row diary-head">
+        <img class="avatar a52" src="assets/img/bareum_face.webp" alt="" />
+        <p id="wk-total">이번 주에 0번 놀러 왔어!</p>
+      </div>
+      <div class="card">
+        <h3>요일별 놀러 온 횟수</h3>
+        <div class="bars" id="wk-bars"></div>
+      </div>
+      <div class="card">
+        <h3>방별 방문</h3>
+        <div class="rooms-count" id="wk-rooms"></div>
+      </div>
+      <div class="card summary">
+        <p class="tag">바름이의 한 줄 요약</p>
+        <p id="wk-summary">아직 기록이 적어. 며칠만 같이 지내 보자!</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen tabbed" id="s-me">
+    <div class="scroll">
+      <h2 class="page-title">내 정보</h2>
+      <div class="card me">
+        <img id="me-img" src="assets/img/sooki_card.webp" alt="" />
+        <div>
+          <b data-name>숙이</b>
+          <p class="muted" id="me-plan">무료 · 거실 목 쉼</p>
+          <button class="chip" id="me-change">모습 바꾸기</button>
+        </div>
+      </div>
+      <button class="card plan-link" data-go="plan">
+        <div><b>요금제 보기</b><p class="muted">플러스 월 3,900원 · 방 4개 모두</p></div>
+        <svg class="ic flip"><use href="#i-back"/></svg>
+      </button>
+
+      <h3 class="list-title">감지 설정</h3>
+      <div class="card settings">
+        <label class="set"><span><b>고개 숙임 감지</b><small>휴대폰 기울기로 살펴봐</small></span><input type="checkbox" id="set-tilt" checked /></label>
+        <label class="set"><span><b>화면 거리 감지</b><small>앞 카메라로 얼굴 크기만 봐 · 저장 안 해</small></span><input type="checkbox" id="set-face" /></label>
+        <label class="set"><span><b>바름이 목소리</b><small>쉼 안내를 읽어 줘</small></span><input type="checkbox" id="set-voice" checked /></label>
+        <div class="set"><span><b>목 쉼 초대 기준</b><small>고개를 이만큼 숙이면 불러</small></span>
+          <select id="set-limit">
+            <option value="1">1분 (시연)</option>
+            <option value="20">20분</option>
+            <option value="40">40분</option>
+            <option value="60">1시간</option>
+          </select>
+        </div>
+        <div class="set"><span><b>화면 가까이 기준</b><small>이만큼 가까워지면 눈 쉼 초대</small></span>
+          <select id="set-close">
+            <option value="3">3번 (시연)</option>
+            <option value="10">10번</option>
+            <option value="15">15번</option>
+          </select>
+        </div>
+      </div>
+
+      <h3 class="list-title">시연 모드</h3>
+      <div class="card settings demo">
+        <p class="muted">센서가 없는 컴퓨터에서도 기울기를 흉내 낼 수 있어.</p>
+        <label class="set"><span><b>가짜 기울기 쓰기</b><small id="demo-angle-label">각도 70°</small></span><input type="checkbox" id="demo-on" /></label>
+        <input type="range" id="demo-angle" min="0" max="90" value="70" />
+        <div class="demo-btns">
+          <button class="chip" id="demo-neck">목 쉼 초대 받기</button>
+          <button class="chip" id="demo-eye">눈 쉼 초대 받기</button>
+          <button class="chip" id="demo-fill">샘플 기록 채우기</button>
+          <button class="chip ghost" id="demo-reset">기록 지우기</button>
+        </div>
+      </div>
+      <button class="link center" id="me-logout">처음 화면으로</button>
+    </div>
+  </section>
+
+  <!-- 하단 탭바 -->
+  <nav class="tabbar" id="tabbar">
+    <button data-tab="home" class="on"><span class="pill"><svg class="ic"><use href="#i-home"/></svg></span>바름이네</button>
+    <button data-tab="record"><span class="pill"><svg class="ic"><use href="#i-chart"/></svg></span>쉼 기록</button>
+    <button data-tab="diary"><span class="pill"><svg class="ic"><use href="#i-book"/></svg></span>바름이 일기</button>
+    <button data-tab="me"><span class="pill"><svg class="ic"><use href="#i-user"/></svg></span>내 정보</button>
+  </nav>
+
+  <!-- ========== 쉼 플레이어 ========== -->
+  <section class="screen" id="s-rest">
+    <header class="rest-head">
+      <button class="icon-btn" id="rest-back" aria-label="뒤로"><svg class="ic"><use href="#i-back"/></svg></button>
+      <h2 id="rest-room">거실 · 목 쉼</h2>
+      <button class="icon-btn" id="rest-close" aria-label="닫기"><svg class="ic"><use href="#i-close"/></svg></button>
+    </header>
+    <div class="rest-title"><span id="rest-step">1/3</span><h1 id="rest-name">턱 당기기</h1></div>
+    <div class="frame">
+      <img id="rest-img-a" alt="" />
+      <img id="rest-img-b" alt="" />
+      <span class="side-tag" id="rest-side"></span>
+    </div>
+    <div class="bubble green row guide">
+      <img class="avatar a54" src="assets/img/bareum_face.webp" alt="" />
+      <p id="rest-guide">턱을 뒤로 쏙 당겨. 뒷목이 길어지는 느낌!</p>
+    </div>
+    <div class="row-between timer-row"><span class="muted">남은 시간</span><b id="rest-time">3:00</b></div>
+    <div class="progress"><i id="rest-bar"></i></div>
+    <div class="controls">
+      <button class="ctl" id="rest-prev" aria-label="이전 동작"><svg class="ic"><use href="#i-prev"/></svg></button>
+      <button class="ctl main" id="rest-play" aria-label="일시정지"><svg class="ic"><use href="#i-pause" id="rest-play-ic"/></svg></button>
+      <button class="ctl" id="rest-next" aria-label="다음 동작"><svg class="ic"><use href="#i-next"/></svg></button>
+    </div>
+    <div class="sounds">
+      <button class="sound" data-sound="rain"><svg class="ic"><use href="#i-rain"/></svg>빗소리</button>
+      <button class="sound" data-sound="forest"><svg class="ic"><use href="#i-tree"/></svg>숲</button>
+      <button class="sound" data-sound="wave"><svg class="ic"><use href="#i-wave"/></svg>파도</button>
+    </div>
+  </section>
+
+  <!-- ========== 쉼 완료 ========== -->
+  <section class="screen" id="s-done">
+    <p class="done-label">쉼 완료</p>
+    <div class="bubble pink done-praise"><p>잘했어, <span data-name-voc>숙이야</span>!<br /><span id="done-sub">목이 한결 가볍지?</span></p></div>
+    <img class="done-img" id="done-img" src="assets/img/sooki_done.webp" alt="기지개 켜는 캐릭터와 엄지 척 바름이" />
+    <div class="card done-count">
+      <b id="done-count">오늘 1번째 쉼이야</b>
+      <span class="stamp"><svg class="ic"><use href="#i-check"/></svg></span>
+    </div>
+    <button class="btn primary" id="done-more">다른 방도 놀러 가기</button>
+    <button class="link red" id="done-exit">집 나가기</button>
+  </section>
+
+  <!-- ========== 요금제 ========== -->
+  <section class="screen" id="s-plan">
+    <header class="rest-head">
+      <button class="icon-btn" data-go="back" aria-label="뒤로"><svg class="ic"><use href="#i-back"/></svg></button>
+      <h2>요금제</h2>
+      <span style="width:22px"></span>
+    </header>
+    <div class="scroll plan-scroll">
+      <h1 class="plan-title"><span data-name>숙이</span>에게 맞는 쉼</h1>
+      <div class="bubble green row">
+        <img class="avatar a44" src="assets/img/bareum_face.webp" alt="" />
+        <p>편한 쉼을 골라 봐.</p>
+      </div>
+      <div class="card plan" id="plan-free">
+        <div class="row-between"><b>무료</b><b>0원</b></div>
+        <p class="muted">거실 목 쉼 · 하루 1번</p>
+        <p class="now" id="plan-free-now">지금 이용 중이야</p>
+      </div>
+      <div class="card plan best">
+        <span class="badge">추천해</span>
+        <div class="row-between"><b>플러스</b><b>월 3,900원</b></div>
+        <ul class="checks"><li>방 4개 모두</li><li>매일 새로운 쉼 루틴</li><li>목소리·배경 소리 선택</li></ul>
+        <button class="btn primary" id="plan-plus">플러스로 놀러 갈게</button>
+      </div>
+      <div class="card plan">
+        <div class="row-between"><b>오피스</b><b>1인당 월 3,000원</b></div>
+        <p class="muted">회사 복지 · 팀별 리포트</p>
+        <button class="link red left" id="plan-office">회사에도 초대할래 →</button>
+      </div>
+      <p class="muted center tiny">수업용 시연 화면이라 실제 결제는 되지 않아.</p>
+    </div>
+  </section>
+
+  <!-- ========== 초대장 (오버레이) ========== -->
+  <div class="overlay" id="invite" hidden>
+    <div class="letter">
+      <i class="letter-top"></i>
+      <img class="letter-img" src="assets/img/bareum_face.webp" alt="다정한 바름이" />
+      <h2><span data-name-voc>숙이야</span>, 잠깐 쉬자!</h2>
+      <div class="bubble pink"><p id="invite-text">고개를 1시간 넘게 숙였어.<br />거실에서 3분만 목 풀자.</p></div>
+      <button class="btn primary" id="invite-go">놀러 가기</button>
+      <button class="link" id="invite-later">이따가 갈게</button>
+    </div>
+  </div>
+
+  <!-- 잠금 시트 -->
+  <div class="overlay sheet-wrap" id="lock" hidden>
+    <div class="sheet">
+      <img class="avatar a52" src="assets/img/bareum_face.webp" alt="" />
+      <h3 id="lock-title">마당은 플러스에서 열려</h3>
+      <p class="muted" id="lock-desc">지금은 거실이랑 창가만 놀러 올 수 있어.</p>
+      <button class="btn primary" data-go="plan" id="lock-plan">요금제 보기</button>
+      <button class="link" id="lock-close">괜찮아</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <video id="cam" playsinline muted hidden></video>
+</div>
+
+<!-- 아이콘 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M5 20V11M10 20V5M15 20v-8M20 20v-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5C10 5 7 4.5 4 5v13c3-.5 6 0 8 1.5M12 6.5C14 5 17 4.5 20 5v13c-3-.5-6 0-8 1.5M12 6.5v13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4.5 20.5c1.2-4 4-5.8 7.5-5.8s6.3 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-prev" viewBox="0 0 24 24"><path d="M7 5v14M18 5l-8 7 8 7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-next" viewBox="0 0 24 24"><path d="M17 5v14M6 5l8 7-8 7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z" fill="currentColor"/></symbol>
+    <symbol id="i-rain" viewBox="0 0 24 24"><path d="M7 15a4 4 0 0 1-.5-8A5.5 5.5 0 0 1 17 8a3.5 3.5 0 0 1 0 7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 18l-1 2M13 18l-1 2M17 18l-1 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-tree" viewBox="0 0 24 24"><path d="M12 3 6 11h3l-4 6h14l-4-6h3zM12 17v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-wave" viewBox="0 0 24 24"><path d="M3 9c2-2 4-2 6 0s4 2 6 0 4-2 6 0M3 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5.5c0 4.5-3 8-7 9.5-4-1.5-7-5-7-9.5V6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.8 12l2.2 2.2 4.2-4.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<script src="js/store.js"></script>
+<script src="js/sound.js"></script>
+<script src="js/sensors.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
