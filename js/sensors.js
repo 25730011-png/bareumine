@@ -129,13 +129,14 @@ const Sensors = (() => {
   let session = 0, hiddenAt = 0;
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) hiddenAt = Date.now();
-    else if (hiddenAt && Date.now() - hiddenAt > 60000) session = 0;   // 1분 넘게 쉬면 새로 셈
+    else if (hiddenAt && Date.now() - hiddenAt > 60000) { session = 0; Store.state.sitSinceRest = 0; }   // 1분 넘게 쉬면 새로 셈
   });
 
   function tick() {
     if (document.hidden) return;
     const st = S(), d = Store.today(), h = new Date().getHours();
     session += 1;
+    st.sitSinceRest = (st.sitSinceRest || 0) + 1;
     if (session > d.longest) d.longest = session;
     if (h < 5) d.night += 1;
 

@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#fbf8f0" />
-  <meta name="description" content="목이 거북해지면, 바름이네 놀러 와 — 자세 알림과 3분 쉼 콘텐츠" />
+  <meta name="description" content="휴대폰 하다 지치면, 바름이네 놀러 와 — 휴대폰 습관 알림과 3분 쉼 콘텐츠" />
   <title>바름이네</title>
-  <link rel="manifest" href="manifest.json" />
-  <link rel="icon" href="assets/icons/icon-192.png" />
-  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="data/manifest.json" />
+  <link rel="icon" href="pages/assets/icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="pages/assets/icons/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -21,15 +21,15 @@
   <section class="screen" id="s-login">
     <div class="login">
       <h1 class="login-title">바름이네</h1>
-      <p class="login-sub">목이 거북해지면, 바름이네 놀러 와</p>
-      <img class="login-house" src="assets/img/house_front.webp" alt="바름이네 집" />
+      <p class="login-sub">휴대폰 하다 지치면, 바름이네 놀러 와</p>
+      <img class="login-house" src="pages/assets/img/house_front.webp" alt="바름이네 집" />
       <div class="bubble green row">
-        <img class="avatar a44" src="assets/img/bareum_face.webp" alt="" />
+        <img class="avatar a44" src="pages/assets/img/bareum_face.webp" alt="" />
         <p>어서 와!<br />3분만 쉬어 가자.</p>
       </div>
-      <button class="btn primary" data-go="start">이메일로 들어갈래</button>
-      <button class="btn secondary" data-go="start">처음 왔어 · 가입하기</button>
-      <button class="link" data-go="start">먼저 둘러볼래</button>
+      <button class="btn primary" data-auth="login">이메일로 들어갈래</button>
+      <button class="btn secondary" data-auth="signup">처음 왔어 · 가입하기</button>
+      <button class="link" data-go="browse">둘러보기</button>
     </div>
   </section>
 
@@ -43,54 +43,72 @@
 
     <div class="ob-step" data-step="0">
       <div class="bubble green row big">
-        <img class="avatar a42" src="assets/img/bareum_face.webp" alt="" />
-        <p>숙이야, 고개가<br />자꾸 숙여지지?</p>
+        <img class="avatar a42" src="pages/assets/img/bareum_face.webp" alt="" />
+        <p>안녕! 나는<br />거북이 바름이야.</p>
       </div>
-      <img class="ob-img" src="assets/img/sooki_phone.webp" alt="휴대폰을 보며 고개 숙인 숙이" />
-      <p class="caption">나랑 잠깐 쉬어 가자.</p>
+      <img class="ob-img hero" src="pages/assets/img/bareum_hi.webp" alt="손 흔드는 바름이" />
+      <p class="caption">휴대폰 보느라 지친 친구들을<br />우리 집에 초대해서 같이 쉬어.</p>
       <button class="btn primary" data-ob-next>바름아, 반가워</button>
     </div>
 
     <div class="ob-step" data-step="1">
       <div class="bubble green row big">
-        <img class="avatar a42" src="assets/img/bareum_face.webp" alt="" />
+        <img class="avatar a42" src="pages/assets/img/bareum_face.webp" alt="" />
         <p>너랑 닮은 모습은?</p>
       </div>
       <div class="pick">
         <button class="pick-card" data-char="sukdol">
           <span class="check"></span>
-          <img src="assets/img/sukdol_card.webp" alt="" />
+          <img src="pages/assets/img/sukdol_card.webp" alt="" />
           <b>숙돌이</b>
         </button>
         <button class="pick-card" data-char="sooki">
           <span class="check"></span>
-          <img src="assets/img/sooki_card.webp" alt="" />
+          <img src="pages/assets/img/sooki_card.webp" alt="" />
           <b>숙이</b>
         </button>
       </div>
       <p class="caption">내 정보에서 언제든 바꿀 수 있어.</p>
-      <button class="btn primary" data-ob-next>이 모습으로 할래</button>
+      <button class="btn primary" id="ob-pick">이 모습으로 할래</button>
     </div>
 
     <div class="ob-step" data-step="2">
       <div class="bubble pink row big">
-        <img class="avatar a42" src="assets/img/bareum_face.webp" alt="" />
-        <p>지칠 땐 우리 집에 와.<br />3분이면 돼!</p>
+        <img class="avatar a42" src="pages/assets/img/bareum_face.webp" alt="" />
+        <p><span data-name-voc>숙이야</span>,<br />이렇게 쉬어 가자!</p>
       </div>
-      <img class="ob-img tall" src="assets/img/bareum_wave.webp" alt="목도리를 두르고 초대하는 바름이" />
-      <p class="caption">목·눈·몸·잠, 함께 쉬어 가자.</p>
-      <button class="btn primary" data-ob-next>어떤 집인지 궁금해</button>
+      <ol class="how">
+        <li>
+          <img data-char-img="phone" alt="" />
+          <div><em>1</em><b>휴대폰 습관을 살펴봐</b><small>고개 숙임 · 화면 가까이 · 오래 사용 · 밤 사용</small></div>
+        </li>
+        <li>
+          <img src="pages/assets/img/bareum_face.webp" alt="" />
+          <div><em>2</em><b>쌓이면 초대장을 보내</b><small>"고개를 20분 숙였어. 거실에서 목 풀자!"</small></div>
+        </li>
+        <li>
+          <img data-char-img="rest" alt="" />
+          <div><em>3</em><b>바름이네서 3분 쉬고 와</b><small>습관에 맞는 방에서 같이 풀어</small></div>
+        </li>
+      </ol>
+      <p class="caption">목, 눈, 몸, 잠까지 습관에 맞춰 쉬어 가.<br />쉬고 나면 바름이 일기에 도장을 찍어 줄게.</p>
+      <button class="btn primary" data-ob-next>좋아, 알겠어</button>
     </div>
 
     <div class="ob-step" data-step="3">
       <div class="bubble green row big">
-        <img class="avatar a42" src="assets/img/bareum_face.webp" alt="" />
+        <img class="avatar a42" src="pages/assets/img/bareum_face.webp" alt="" />
         <p>쉬어 갈 때가 되면<br />내가 알려 줄게.</p>
       </div>
-      <img class="ob-small" src="assets/img/bareum_full.webp" alt="손 흔드는 바름이" />
+      <img class="ob-small" src="pages/assets/img/bareum_sign.webp" alt="화살표 팻말을 든 바름이" />
       <div class="card perm">
-        <p class="perm-title"><svg class="ic"><use href="#i-shield"/></svg>카메라 영상은 저장하지 않아</p>
-        <p class="perm-desc">자세·거리·사용 시간을 살펴볼게.<br />권한은 내 정보에서 바꿀 수 있어.</p>
+        <p class="perm-title"><svg class="ic"><use href="#i-shield"/></svg>이렇게 살펴볼게</p>
+        <ul class="perm-list">
+          <li><b>📱 기울기 센서</b><span>고개를 얼마나 숙였는지</span></li>
+          <li><b>👀 앞 카메라</b><span>화면이랑 얼마나 가까운지 · 켤 때만, 영상 저장 안 해</span></li>
+          <li><b>⏱️ 시계</b><span>오래 쓰는지, 밤에 쓰는지</span></li>
+        </ul>
+        <p class="perm-desc">바름이네를 켜 둔 동안만 살펴봐. 권한은 내 정보에서 바꿀 수 있어.</p>
       </div>
       <button class="btn primary" id="ob-perm">센서 권한 허용할게</button>
     </div>
@@ -98,33 +116,41 @@
 
   <!-- ========== 메인 (탭) ========== -->
   <section class="screen tabbed" id="s-home">
-    <div class="scroll">
+    <div class="scroll home-f">
       <p class="date" id="home-date">11월 17일 화요일</p>
       <h2 class="hello">어서 와, <span data-name-voc>숙이야</span>!</h2>
       <p class="sub">어디서 쉬어 갈래?</p>
 
       <div class="house">
-        <img src="assets/img/house_rooms.webp" alt="거실, 창가, 마당, 침실이 있는 바름이네" />
+        <img src="pages/assets/img/house_rooms.webp" alt="거실, 창가, 마당, 침실이 있는 바름이네" />
         <button class="room tl" data-room="bed"><b>침실</b><small>잠 쉼</small></button>
         <button class="room tr" data-room="window"><b>창가</b><small>눈 쉼</small></button>
-        <button class="room bl active" data-room="living"><b>거실</b><small>목 쉼</small></button>
+        <button class="room bl" data-room="living"><b>거실</b><small>목 쉼</small></button>
         <button class="room br" data-room="yard"><b>마당</b><small>몸 쉼</small></button>
+        <div class="peek" id="peek" hidden><i class="spot" id="peek-spot"></i></div>
+      </div>
+      <div class="peek-bar" id="peek-bar" hidden>
+        <img class="avatar" src="pages/assets/img/bareum_face.webp" alt="" />
+        <div class="peek-txt"><p id="peek-text">거실에서 3분만<br />목 풀고 갈래?</p><small id="peek-why">고개를 오래 숙이면 불러</small></div>
+        <button class="peek-go" id="peek-go">놀러 가기</button>
       </div>
 
-      <div class="sec-head">
-        <h3>오늘의 습관</h3>
-        <span class="live" id="live-chip"><i></i><em id="live-text">센서 대기 중</em></span>
-      </div>
+      <h3 class="home-sec">오늘의 습관</h3>
       <div class="card stats">
-        <div><small>고개 숙임</small><b id="st-down">0분</b></div>
-        <div><small>화면 가까이</small><b id="st-close">0번</b></div>
-        <div><small>가장 오래 사용</small><b id="st-long">0분</b></div>
-        <div><small>자정 이후 사용</small><b id="st-night">0분</b></div>
+        <div><small>고개 숙임</small><b id="hs-down">0분</b></div>
+        <div><small>화면 가까이</small><b id="hs-close">0번</b></div>
+        <div><small>가장 오래 사용</small><b id="hs-long">0분</b></div>
+        <div><small>자정 이후 사용</small><b id="hs-night">0분</b></div>
       </div>
+      <button class="habit-how" data-go="guide">바름이는 어떻게 알아챌까? <u>알아보기</u></button>
 
-      <button class="invite-card" id="home-invite">
-        <img class="avatar a52" src="assets/img/bareum_face.webp" alt="" />
-        <p id="home-invite-text">거실에서 3분만<br />목 풀고 갈래?</p>
+      <button class="invite-card status" id="home-call">
+        <img class="avatar a52" src="pages/assets/img/bareum_face.webp" alt="" />
+        <div class="call-body">
+          <small id="home-call-state">바름이가 살펴보는 중</small>
+          <p id="home-call-text">다음 쉼까지 20분 남았어</p>
+          <span class="call-bar"><i id="home-call-fill"></i></span>
+        </div>
       </button>
     </div>
   </section>
@@ -132,24 +158,40 @@
   <section class="screen tabbed" id="s-record">
     <div class="scroll">
       <h2 class="page-title">쉼 기록</h2>
-      <p class="sub">오늘 하루, <span data-name>숙이</span>의 자세를 모아 봤어.</p>
-      <div class="card">
-        <div class="row-between"><h3>시간대별 고개 숙임</h3><small class="muted">오늘 · 분</small></div>
-        <div class="hours" id="rec-hours"></div>
-        <div class="hours-axis"><span>0시</span><span>6시</span><span>12시</span><span>18시</span><span>24시</span></div>
-      </div>
-      <div class="card">
-        <div class="row-between"><h3>지금 자세</h3><small class="muted" id="rec-mode">센서</small></div>
-        <div class="tilt">
-          <div class="tilt-phone" id="tilt-phone"></div>
+
+      <div class="watch" id="watch">
+        <div class="watch-top">
+          <img class="avatar a52" src="pages/assets/img/bareum_face.webp" alt="" />
           <div>
-            <b id="tilt-angle">--°</b>
-            <p id="tilt-label" class="muted">휴대폰을 들어 볼래?</p>
+            <small id="watch-state">바름이가 살펴보는 중</small>
+            <p id="watch-msg">휴대폰을 손에 들면 자세를 살펴볼게.</p>
           </div>
         </div>
+        <div class="watch-bar"><i id="watch-fill"></i></div>
+        <div class="watch-foot">
+          <span id="watch-label">목 쉼 초대까지 20분</span>
+          <button class="watch-go" id="home-invite">바로 쉬러 가기</button>
+        </div>
       </div>
-      <h3 class="list-title">최근 쉼</h3>
-      <ul class="rest-list" id="rec-list"></ul>
+
+      <details class="card fold" data-fold="rec-today" open>
+        <summary><h3>오늘의 습관</h3><small class="live" id="live-chip"><i></i><em id="live-text">센서 대기 중</em></small></summary>
+        <div class="stats">
+          <div><small>고개 숙임</small><b id="st-down">0분</b></div>
+          <div><small>화면 가까이</small><b id="st-close">0번</b></div>
+          <div><small>가장 오래 사용</small><b id="st-long">0분</b></div>
+          <div><small>자정 이후 사용</small><b id="st-night">0분</b></div>
+        </div>
+      </details>
+      <details class="card fold" data-fold="rec-hours" open>
+        <summary><h3>시간대별 고개 숙임</h3><small class="muted">오늘 · 분</small></summary>
+        <div class="hours" id="rec-hours"></div>
+        <div class="hours-axis"><span>0시</span><span>6시</span><span>12시</span><span>18시</span><span>24시</span></div>
+      </details>
+      <details class="fold plain" data-fold="rec-list" open>
+        <summary><h3>최근 쉼</h3></summary>
+        <ul class="rest-list" id="rec-list"></ul>
+      </details>
     </div>
   </section>
 
@@ -161,17 +203,17 @@
         <button class="icon-btn" id="wk-next" aria-label="다음 주"><svg class="ic flip"><use href="#i-back"/></svg></button>
       </div>
       <div class="bubble pink row diary-head">
-        <img class="avatar a52" src="assets/img/bareum_face.webp" alt="" />
+        <img class="avatar a52" src="pages/assets/img/bareum_face.webp" alt="" />
         <p id="wk-total">이번 주에 0번 놀러 왔어!</p>
       </div>
-      <div class="card">
-        <h3>요일별 놀러 온 횟수</h3>
+      <details class="card fold" data-fold="wk-bars" open>
+        <summary><h3>요일별 놀러 온 횟수</h3></summary>
         <div class="bars" id="wk-bars"></div>
-      </div>
-      <div class="card">
-        <h3>방별 방문</h3>
+      </details>
+      <details class="card fold" data-fold="wk-rooms" open>
+        <summary><h3>방별 방문</h3></summary>
         <div class="rooms-count" id="wk-rooms"></div>
-      </div>
+      </details>
       <div class="card summary">
         <p class="tag">바름이의 한 줄 요약</p>
         <p id="wk-summary">아직 기록이 적어. 며칠만 같이 지내 보자!</p>
@@ -183,19 +225,24 @@
     <div class="scroll">
       <h2 class="page-title">내 정보</h2>
       <div class="card me">
-        <img id="me-img" src="assets/img/sooki_card.webp" alt="" />
+        <img id="me-img" src="pages/assets/img/sooki_card.webp" alt="" />
         <div>
           <b data-name>숙이</b>
           <p class="muted" id="me-plan">무료 · 거실 목 쉼</p>
           <button class="chip" id="me-change">모습 바꾸기</button>
         </div>
       </div>
+      <div class="card account">
+        <div><small class="muted">계정</small><b id="me-email">둘러보기 중</b></div>
+        <button class="chip" id="me-logout">로그아웃</button>
+      </div>
       <button class="card plan-link" data-go="plan">
-        <div><b>요금제 보기</b><p class="muted">플러스 월 3,900원 · 방 4개 모두</p></div>
+        <div><b>요금제 보기</b><p class="muted">무료로 거실 이용 중 · 플러스 월 3,900원</p></div>
         <svg class="ic flip"><use href="#i-back"/></svg>
       </button>
 
-      <h3 class="list-title">감지 설정</h3>
+      <details class="fold plain" data-fold="me-set" open>
+      <summary><h3>감지 설정</h3></summary>
       <div class="card settings">
         <label class="set"><span><b>고개 숙임 감지</b><small>휴대폰 기울기로 살펴봐</small></span><input type="checkbox" id="set-tilt" checked /></label>
         <label class="set"><span><b>화면 거리 감지</b><small>앞 카메라로 얼굴 크기만 봐 · 저장 안 해</small></span><input type="checkbox" id="set-face" /></label>
@@ -208,6 +255,14 @@
             <option value="60">1시간</option>
           </select>
         </div>
+        <div class="set"><span><b>몸 쉼 초대 기준</b><small>쉬지 않고 이만큼 쓰면 불러</small></span>
+          <select id="set-sit">
+            <option value="2">2분 (시연)</option>
+            <option value="30">30분</option>
+            <option value="60">1시간</option>
+            <option value="90">1시간 30분</option>
+          </select>
+        </div>
         <div class="set"><span><b>화면 가까이 기준</b><small>이만큼 가까워지면 눈 쉼 초대</small></span>
           <select id="set-close">
             <option value="3">3번 (시연)</option>
@@ -217,21 +272,38 @@
         </div>
       </div>
 
-      <h3 class="list-title">시연 모드</h3>
+      </details>
+      <details class="fold plain" data-fold="me-demo">
+      <summary><h3>시연 모드</h3></summary>
       <div class="card settings demo">
         <p class="muted">센서가 없는 컴퓨터에서도 기울기를 흉내 낼 수 있어.</p>
         <label class="set"><span><b>가짜 기울기 쓰기</b><small id="demo-angle-label">각도 70°</small></span><input type="checkbox" id="demo-on" /></label>
         <input type="range" id="demo-angle" min="0" max="90" value="70" />
         <div class="demo-btns">
           <button class="chip" id="demo-neck">목 쉼 초대 받기</button>
+          <button class="chip" id="demo-yard">몸 쉼 초대 받기</button>
           <button class="chip" id="demo-eye">눈 쉼 초대 받기</button>
           <button class="chip" id="demo-fill">샘플 기록 채우기</button>
           <button class="chip ghost" id="demo-reset">기록 지우기</button>
         </div>
       </div>
-      <button class="link center" id="me-logout">처음 화면으로</button>
+      </details>
+      <button class="card plan-link" data-go="guide">
+        <div><b>바름이네 사용 설명서</b><p class="muted">어떻게 쓰는 앱인지 한눈에 보기</p></div>
+        <svg class="ic flip"><use href="#i-back"/></svg>
+      </button>
+      <button class="card plan-link" data-go="onboard">
+        <div><b>첫 만남 다시 보기</b><p class="muted">바름이를 처음 만났던 화면부터 다시</p></div>
+        <svg class="ic flip"><use href="#i-back"/></svg>
+      </button>
     </div>
   </section>
+
+  <!-- 상단 바 -->
+  <header class="appbar" id="appbar">
+    <button class="appbar-brand" id="appbar-home" aria-label="바름이네 홈으로"><img src="pages/assets/img/bareum_face.webp" alt="" /><b>바름이네</b></button>
+    <button class="appbar-plan" data-go="plan" id="appbar-plan">무료</button>
+  </header>
 
   <!-- 하단 탭바 -->
   <nav class="tabbar" id="tabbar">
@@ -250,12 +322,15 @@
     </header>
     <div class="rest-title"><span id="rest-step">1/3</span><h1 id="rest-name">턱 당기기</h1></div>
     <div class="frame">
+      <img id="rest-bg" class="rest-bg" alt="" />
       <img id="rest-img-a" alt="" />
       <img id="rest-img-b" alt="" />
+      <video id="rest-vid" muted loop playsinline preload="metadata" hidden></video>
+      <div class="ph frame-ph" id="rest-ph" hidden></div>
       <span class="side-tag" id="rest-side"></span>
     </div>
     <div class="bubble green row guide">
-      <img class="avatar a54" src="assets/img/bareum_face.webp" alt="" />
+      <img class="avatar a54" src="pages/assets/img/bareum_face.webp" alt="" />
       <p id="rest-guide">턱을 뒤로 쏙 당겨. 뒷목이 길어지는 느낌!</p>
     </div>
     <div class="row-between timer-row"><span class="muted">남은 시간</span><b id="rest-time">3:00</b></div>
@@ -276,13 +351,82 @@
   <section class="screen" id="s-done">
     <p class="done-label">쉼 완료</p>
     <div class="bubble pink done-praise"><p>잘했어, <span data-name-voc>숙이야</span>!<br /><span id="done-sub">목이 한결 가볍지?</span></p></div>
-    <img class="done-img" id="done-img" src="assets/img/sooki_done.webp" alt="기지개 켜는 캐릭터와 엄지 척 바름이" />
+    <img class="done-img" id="done-img" alt="쉼을 마친 캐릭터" />
     <div class="card done-count">
-      <b id="done-count">오늘 1번째 쉼이야</b>
+      <div><b id="done-count">오늘 1번째 쉼이야</b><small id="done-next">일기에 도장 찍었어 · 다음 초대는 20분 뒤</small></div>
       <span class="stamp"><svg class="ic"><use href="#i-check"/></svg></span>
     </div>
-    <button class="btn primary" id="done-more">다른 방도 놀러 가기</button>
-    <button class="link red" id="done-exit">집 나가기</button>
+    <button class="btn primary" id="done-more">고마워, 바름아!</button>
+    <button class="link red" id="done-exit">바름이 일기 보러 가기</button>
+  </section>
+
+  <!-- ========== 사용 설명서 ========== -->
+  <section class="screen" id="s-guide">
+    <header class="rest-head">
+      <button class="icon-btn" data-go="back" aria-label="뒤로"><svg class="ic"><use href="#i-back"/></svg></button>
+      <h2>사용 설명서</h2>
+      <span style="width:22px"></span>
+    </header>
+    <div class="scroll guide-scroll">
+      <div class="bubble green row">
+        <img class="avatar a52" src="pages/assets/img/bareum_face.webp" alt="" />
+        <p>바름이네는 휴대폰 볼 때<br />목 건강을 지켜 주는 앱이야.</p>
+      </div>
+
+      <h3 class="g-title">이렇게 돌아가</h3>
+      <ol class="g-steps">
+        <li><em>1</em><div><b>바름이가 자세를 살펴봐</b><p>휴대폰 기울기로 고개를 얼마나 숙였는지 세. 앱을 켜 둔 동안만 살펴봐.</p></div></li>
+        <li><em>2</em><div><b>오래 숙이면 초대장이 와</b><p>고개 숙인 시간이 기준(기본 20분)만큼 쌓이면 바름이가 집으로 불러.</p></div></li>
+        <li><em>3</em><div><b>바름이네서 3분 쉬어</b><p>캐릭터 동작을 따라 하면서 목을 풀어. 바름이가 목소리로 알려 줘.</p></div></li>
+        <li><em>4</em><div><b>일기에 도장 쾅</b><p>쉬고 나면 기록이 쌓이고, 고개 숙임 시간은 다시 0부터 세.</p></div></li>
+      </ol>
+
+      <h3 class="g-title">바름이는 이렇게 알아채</h3>
+      <p class="g-lead">따로 기계 없이 휴대폰에 원래 있는 센서랑 시계만 써.</p>
+      <div class="g-sense">
+        <div><b>📱 고개 숙임</b><span>거실 · 목 쉼</span><p>휴대폰을 바닥 쪽으로 눕혀 들수록 고개도 숙여져. 그래서 <em>휴대폰 기울기</em>로 고개를 얼마나 숙였는지 짐작해. 책상에 내려놓은 건 안 세.</p></div>
+        <div><b>👀 화면 가까이</b><span>창가 · 눈 쉼</span><p><em>앞 카메라</em>로 화면 속 얼굴이 얼마나 큰지만 봐. 얼굴이 화면 반 넘게 2초 이상 커지면 너무 가까운 거야. 영상은 저장하지 않아.</p></div>
+        <div><b>⏱️ 오래 사용</b><span>마당 · 몸 쉼</span><p>앱을 쉬지 않고 쓴 <em>시간</em>을 세. 오래 붙잡고 있을수록 등이 굽고 목이 앞으로 나와.</p></div>
+        <div><b>🌙 자정 이후</b><span>침실 · 잠 쉼</span><p>밤 12시부터 새벽 5시 사이에 쓴 <em>시간</em>을 세. 누워서 보면 목이 꺾인 채로 오래 있게 돼.</p></div>
+      </div>
+      <p class="g-note">지금은 <b>웹 시연판</b>이라 바름이네를 켜 둔 동안만 살펴볼 수 있어. 화면을 끄거나 다른 앱으로 가면 잠깐 쉬어.<br />앞으로 나올 <b>안드로이드 앱</b>에서는 유튜브나 SNS를 보는 중에도 뒤에서 살펴보다가, 쉴 때가 되면 알림으로 초대장을 보내 줄 거야.</p>
+
+      <h3 class="g-title">홈 화면 보는 법</h3>
+      <div class="card g-card">
+        <p><b>바름이가 살펴보는 중</b> 카드에서 지금 자세랑 초대장까지 남은 시간을 볼 수 있어.</p>
+        <div class="g-legend">
+          <span><i style="background:#7fa37c"></i>바른 자세</span>
+          <span><i style="background:#d98a5f"></i>고개 숙임</span>
+          <span><i style="background:#b9473b"></i>쉬러 갈 시간</span>
+        </div>
+        <p class="muted">기다리기 싫으면 <b>바로 쉬러 가기</b>나 방을 눌러.</p>
+      </div>
+
+      <h3 class="g-title">방 4개</h3>
+      <div class="g-rooms">
+        <div><b>거실</b><small>목 쉼 · 3분 · 무료</small><p>턱 당기기, 옆목 늘리기, 가슴 펴기</p></div>
+        <div><b>창가</b><small>눈 쉼 · 1분 · 플러스</small><p>화면이 너무 가까우면 초대해</p></div>
+        <div><b>마당</b><small>몸 쉼 · 1분 30초 · 플러스</small><p>쉬지 않고 오래 쓰면 초대해</p></div>
+        <div><b>침실</b><small>잠 쉼 · 플러스</small><p>자정 넘어 쓰면 초대 (준비 중)</p></div>
+      </div>
+
+      <h3 class="g-title">탭 메뉴</h3>
+      <div class="card g-card g-tabs">
+        <p><b>쉼 기록</b> 오늘 몇 시에 고개를 많이 숙였는지, 지금 자세</p>
+        <p><b>바름이 일기</b> 이번 주에 몇 번 놀러 왔는지, 바름이 한 줄 요약</p>
+        <p><b>내 정보</b> 캐릭터 바꾸기, 초대 기준, 화면 거리 감지, 요금제</p>
+      </div>
+
+      <h3 class="g-title">알아 두면 좋아</h3>
+      <div class="card g-card g-tabs">
+        <p>아이폰은 처음에 <b>센서 권한 허용</b>을 눌러야 살펴볼 수 있어.</p>
+        <p>화면 거리 감지는 앞 카메라로 얼굴 크기만 봐. 영상은 저장하지 않아.</p>
+        <p>컴퓨터에서는 내 정보 → <b>시연 모드</b>로 기울기를 흉내 낼 수 있어.</p>
+        <p>지금은 웹 시연판이라 바름이네를 켜 둔 동안만 살펴봐. 다른 앱을 쓰는 중에도 살펴보는 건 안드로이드 앱에서 할 거야.</p>
+      </div>
+
+      <button class="btn primary" data-go="onboard">첫 만남 화면 다시 보기</button>
+    </div>
   </section>
 
   <!-- ========== 요금제 ========== -->
@@ -295,18 +439,19 @@
     <div class="scroll plan-scroll">
       <h1 class="plan-title"><span data-name>숙이</span>에게 맞는 쉼</h1>
       <div class="bubble green row">
-        <img class="avatar a44" src="assets/img/bareum_face.webp" alt="" />
+        <img class="avatar a44" src="pages/assets/img/bareum_face.webp" alt="" />
         <p>편한 쉼을 골라 봐.</p>
       </div>
       <div class="card plan" id="plan-free">
         <div class="row-between"><b>무료</b><b>0원</b></div>
-        <p class="muted">거실 목 쉼 · 하루 1번</p>
+        <ul class="checks small"><li>거실 목 쉼 무제한</li><li>습관 4가지 감지와 초대장</li><li>쉼 기록 · 이번 주 바름이 일기</li><li>바름이 목소리 · 빗소리</li></ul>
         <p class="now" id="plan-free-now">지금 이용 중이야</p>
       </div>
       <div class="card plan best">
         <span class="badge">추천해</span>
         <div class="row-between"><b>플러스</b><b>월 3,900원</b></div>
-        <ul class="checks"><li>방 4개 모두</li><li>매일 새로운 쉼 루틴</li><li>목소리·배경 소리 선택</li></ul>
+        <p class="muted">무료 기능 전부에 더해서</p>
+        <ul class="checks"><li>창가 눈 쉼 · 마당 몸 쉼 · 침실 잠 쉼까지 방 4개</li><li>숲·파도 배경 소리</li><li>지난 기록 전체 보기</li><li>매일 새로운 쉼 루틴</li></ul>
         <button class="btn primary" id="plan-plus">플러스로 놀러 갈게</button>
       </div>
       <div class="card plan">
@@ -322,7 +467,7 @@
   <div class="overlay" id="invite" hidden>
     <div class="letter">
       <i class="letter-top"></i>
-      <img class="letter-img" src="assets/img/bareum_face.webp" alt="다정한 바름이" />
+      <img class="letter-img" src="pages/assets/img/bareum_face.webp" alt="다정한 바름이" />
       <h2><span data-name-voc>숙이야</span>, 잠깐 쉬자!</h2>
       <div class="bubble pink"><p id="invite-text">고개를 1시간 넘게 숙였어.<br />거실에서 3분만 목 풀자.</p></div>
       <button class="btn primary" id="invite-go">놀러 가기</button>
@@ -330,10 +475,28 @@
     </div>
   </div>
 
+  <!-- 로그인 / 가입 -->
+  <div class="overlay sheet-wrap" id="auth" hidden>
+    <form class="sheet auth-sheet" id="auth-form" novalidate>
+      <div class="auth-tabs">
+        <button type="button" data-tab-auth="login" class="on">로그인</button>
+        <button type="button" data-tab-auth="signup">가입하기</button>
+      </div>
+      <label class="field"><span>이메일</span><input type="email" id="auth-email" autocomplete="email" placeholder="you@example.com" required /></label>
+      <label class="field"><span>비밀번호</span><input type="password" id="auth-pw" autocomplete="current-password" placeholder="6자 이상" required /></label>
+      <label class="field" id="auth-pw2-wrap" hidden><span>비밀번호 확인</span><input type="password" id="auth-pw2" autocomplete="new-password" placeholder="한 번 더" /></label>
+      <p class="auth-err" id="auth-err"></p>
+      <button class="btn primary" type="submit" id="auth-submit">로그인</button>
+      <button class="link" type="button" id="auth-forgot">비밀번호를 잊었어</button>
+      <p class="auth-mode" id="auth-mode"></p>
+      <button class="link" type="button" id="auth-close">닫기</button>
+    </form>
+  </div>
+
   <!-- 잠금 시트 -->
   <div class="overlay sheet-wrap" id="lock" hidden>
     <div class="sheet">
-      <img class="avatar a52" src="assets/img/bareum_face.webp" alt="" />
+      <img class="avatar a52" src="pages/assets/img/bareum_face.webp" alt="" />
       <h3 id="lock-title">마당은 플러스에서 열려</h3>
       <p class="muted" id="lock-desc">지금은 거실이랑 창가만 놀러 올 수 있어.</p>
       <button class="btn primary" data-go="plan" id="lock-plan">요금제 보기</button>
@@ -341,6 +504,7 @@
     </div>
   </div>
 
+  <div class="room-enter" id="room-enter" hidden><img id="room-enter-img" alt="" /></div>
   <div class="toast" id="toast"></div>
   <video id="cam" playsinline muted hidden></video>
 </div>
@@ -361,11 +525,17 @@
     <symbol id="i-rain" viewBox="0 0 24 24"><path d="M7 15a4 4 0 0 1-.5-8A5.5 5.5 0 0 1 17 8a3.5 3.5 0 0 1 0 7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 18l-1 2M13 18l-1 2M17 18l-1 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
     <symbol id="i-tree" viewBox="0 0 24 24"><path d="M12 3 6 11h3l-4 6h14l-4-6h3zM12 17v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
     <symbol id="i-wave" viewBox="0 0 24 24"><path d="M3 9c2-2 4-2 6 0s4 2 6 0 4-2 6 0M3 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-collapse" viewBox="0 0 24 24"><path d="M20 10h-6V4M4 14h6v6M14 10l7-7M10 14l-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5.5c0 4.5-3 8-7 9.5-4-1.5-7-5-7-9.5V6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.8 12l2.2 2.2 4.2-4.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   </defs>
 </svg>
 
+<script src="js/vendor/firebase-app-compat.js"></script>
+<script src="js/vendor/firebase-auth-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/auth.js"></script>
 <script src="js/store.js"></script>
 <script src="js/sound.js"></script>
 <script src="js/sensors.js"></script>

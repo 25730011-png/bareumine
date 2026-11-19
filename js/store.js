@@ -1,24 +1,31 @@
 /* 바름이네 — 데이터 저장 (localStorage) */
 const Store = (() => {
-  const KEY = 'bareumine:v1';
+  const BASE = 'bareumine:v1';
+  let KEY = BASE;   // 로그인하면 사람마다 따로: bareumine:v1:<id>
 
   const defaults = () => ({
     onboarded: false,
-    char: 'sooki',            // sooki | sukdol
+    char: null,               // 고르기 전 null → sooki | sukdol
     plan: 'free',             // free | plus
-    settings: { tilt: true, face: false, voice: true, limit: 20, close: 10 },
+    settings: { tilt: true, face: false, voice: true, limit: 20, close: 10, sit: 60 },
     days: {},                 // 'YYYY-MM-DD' -> { down, close, longest, night, hours[24] }
     visits: [],               // { t, room }
     sinceRest: 0,             // 마지막 쉼 이후 고개 숙인 초
-    closeSinceRest: 0         // 마지막 쉼 이후 화면 가까이 횟수
+    closeSinceRest: 0,        // 마지막 쉼 이후 화면 가까이 횟수
+    sitSinceRest: 0           // 마지막 쉼 이후 쉬지 않고 쓴 초
   });
 
   let state;
-  try {
-    const saved = JSON.parse(localStorage.getItem(KEY) || 'null');
-    const d = defaults();
-    state = saved ? { ...d, ...saved, settings: { ...d.settings, ...(saved.settings || {}) } } : d;
-  } catch (e) { state = defaults(); }
+  function load() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(KEY) || 'null');
+      const d = defaults();
+      state = saved ? { ...d, ...saved, settings: { ...d.settings, ...(saved.settings || {}) } } : d;
+    } catch (e) { state = defaults(); }
+  }
+  load();
+  /* 로그인한 사람의 기록으로 바꾸기 */
+  function useUser(id) { KEY = id ? `${BASE}:${id}` : BASE; load(); }
 
   let timer = null;
   function save(now) {
@@ -42,6 +49,7 @@ const Store = (() => {
     if (state.visits.length > 500) state.visits = state.visits.slice(-500);
     state.sinceRest = 0;
     state.closeSinceRest = 0;
+    state.sitSinceRest = 0;
     save(true);
   }
   function visitsToday(room) {
@@ -81,5 +89,5 @@ const Store = (() => {
     save(true);
   }
 
-  return { get state() { return state; }, save, today, day, dayKey, addVisit, visitsToday, reset, fillSample };
+  return { get state() { return state; }, save, useUser, today, day, dayKey, addVisit, visitsToday, reset, fillSample };
 })();

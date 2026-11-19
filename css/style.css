@@ -77,7 +77,7 @@ img{display:block;max-width:100%}
 .caption{text-align:center;color:var(--muted);font-size:14px;margin:auto 0 18px;padding-top:20px}
 .pick{display:flex;gap:16px;margin-top:36px}
 .pick-card{flex:1;position:relative;background:#fff;border:1px solid var(--line);border-radius:20px;padding:8px 8px 14px;transition:all .2s}
-.pick-card img{width:100%;aspect-ratio:142/236;object-fit:cover;border-radius:14px;background:#cad4bf}
+.pick-card img{width:100%;aspect-ratio:142/236;object-fit:cover;object-position:center 25%;border-radius:14px;background:#cad4bf}
 .pick-card b{display:block;margin-top:12px;font-size:16px}
 .pick-card .check{position:absolute;top:16px;right:16px;width:22px;height:22px;border-radius:50%;background:#fff;border:1.5px solid #dbe1d4}
 .pick-card.on{background:#fbefe7;border:2px solid var(--red);padding:7px 7px 13px}
@@ -162,7 +162,7 @@ img{display:block;max-width:100%}
 
 /* me */
 .me{display:flex;gap:16px;align-items:center}
-.me img{width:76px;height:96px;object-fit:cover;border-radius:16px;background:#cad4bf}
+.me img{width:76px;height:96px;object-fit:cover;object-position:center 40%;border-radius:16px;background:#cad4bf}
 .me b{font-size:20px}
 .me p{font-size:12px;margin:2px 0 10px}
 .plan-link{display:flex;width:100%;align-items:center;justify-content:space-between;text-align:left;color:var(--ink)}
@@ -266,3 +266,291 @@ img{display:block;max-width:100%}
   .bubble.big p{font-size:19px;line-height:27px}
   .done-label{margin-top:10px}
 }
+
+/* ===== 흐름 개선 ===== */
+.ob-img.hero{object-fit:cover;object-position:center 40%}
+.how{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:22px}
+.how li{display:flex;align-items:center;gap:14px;background:#fff;border-radius:20px;padding:10px 14px 10px 10px;border:1px solid var(--line);animation:fade .4s both}
+.how li:nth-child(2){animation-delay:.12s}.how li:nth-child(3){animation-delay:.24s}
+.how img{width:70px;height:70px;border-radius:16px;object-fit:cover;flex:none;background:#cad4bf}
+.how div{display:flex;flex-direction:column}
+.how em{font-style:normal;font-size:11px;font-weight:700;color:#fff;background:var(--red);width:20px;height:20px;border-radius:50%;display:grid;place-items:center;margin-bottom:4px}
+.how b{font-size:16px;letter-spacing:-.2px}
+.how small{font-size:12px;color:var(--muted);margin-top:2px}
+
+.watch{background:var(--green);border-radius:24px;padding:16px;margin:16px 0 24px;transition:background .3s}
+.watch-top{display:flex;align-items:center;gap:14px}
+.watch-top small{font-size:11px;font-weight:700;color:var(--muted)}
+.watch-top p{font-size:15px;font-weight:500;line-height:22px;margin-top:2px}
+.watch-bar{height:8px;border-radius:4px;background:rgba(255,255,255,.75);margin-top:14px;overflow:hidden}
+.watch-bar i{display:block;height:100%;width:0;background:#7fa37c;border-radius:4px;transition:width .8s ease,background .3s}
+.watch-foot{display:flex;align-items:center;justify-content:space-between;margin-top:10px;gap:10px}
+.watch-foot span{font-size:12px;color:var(--muted);font-weight:500}
+.watch-go{font-size:12px;font-weight:700;color:var(--red-ink);background:#fff;border-radius:12px;padding:7px 12px;flex:none}
+.watch.warn .watch-bar i{background:#d98a5f}
+.watch.ready{background:var(--pink);animation:nudge 1.6s ease-in-out infinite}
+.watch.ready .watch-bar i{background:var(--red)}
+.watch.ready .watch-go{background:var(--red);color:#fff}
+.watch.ready small{color:var(--red-ink)}
+.sec-head small{font-size:11px}
+.house{margin-top:0}
+.done-count small{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+
+/* 사용 설명서 */
+#s-guide{padding-bottom:0}
+.guide-scroll{margin:0 -24px;padding:18px 24px 40px}
+.g-title{font-size:16px;font-weight:700;margin:26px 0 12px}
+.g-steps{list-style:none;display:flex;flex-direction:column;gap:10px}
+.g-steps li{display:flex;gap:12px;background:#fff;border-radius:18px;padding:14px}
+.g-steps em{font-style:normal;flex:none;width:24px;height:24px;border-radius:50%;background:var(--red);color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center}
+.g-steps b{font-size:15px}
+.g-steps p{font-size:13px;color:var(--muted);line-height:20px;margin-top:2px}
+.g-card p{font-size:14px;line-height:22px}
+.g-card p + p{margin-top:8px}
+.g-legend{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}
+.g-legend span{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.g-legend i{width:18px;height:6px;border-radius:3px}
+.g-rooms{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.g-rooms div{background:#fff;border-radius:18px;padding:14px}
+.g-rooms b{font-size:15px}
+.g-rooms small{display:block;font-size:11px;color:var(--red-ink);font-weight:700;margin-top:2px}
+.g-rooms p{font-size:12px;color:var(--muted);line-height:18px;margin-top:6px}
+.g-tabs b{color:var(--red-ink)}
+#s-guide .btn{margin-top:26px}
+
+/* 아직 안 만든 이미지 자리 */
+.ph{display:flex;align-items:center;justify-content:center;text-align:center;background:repeating-linear-gradient(135deg,#f3f1ea 0 10px,#eeebe2 10px 20px);border:1.5px dashed #cfd5c6;color:var(--muted2);font-size:13px;font-weight:500;line-height:20px;padding:12px;border-radius:20px}
+.ph[hidden]{display:none}
+.ph::before{content:"이미지 준비 중";display:block;font-size:11px;font-weight:700;color:var(--red-ink);margin-bottom:4px}
+.ph{flex-direction:column}
+.how .ph{width:70px;height:70px;flex:none;font-size:0;padding:0;border-radius:16px}
+.how .ph::before{font-size:9px;margin:0;line-height:12px;content:"준비 중"}
+.frame-ph{position:absolute;inset:6px;border-radius:28px;z-index:1}
+.done-img.ph{width:calc(100% + 8px);aspect-ratio:350/280;margin:16px -4px;border-radius:28px}
+[hidden]{display:none!important}
+
+/* 접기/펴기 */
+.fold > summary{list-style:none;display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;-webkit-user-select:none}
+.fold > summary::-webkit-details-marker{display:none}
+.fold > summary h3{font-size:16px;font-weight:700;margin:0}
+.fold > summary small{margin-left:auto;font-size:12px}
+.fold > summary::after{content:"";width:8px;height:8px;border-right:2px solid var(--muted2);border-bottom:2px solid var(--muted2);transform:rotate(45deg);margin:0 4px 4px 4px;transition:transform .2s;flex:none}
+.fold:not([open]) > summary::after{transform:rotate(-45deg);margin-bottom:0}
+.fold > summary:not(:has(small))::after{margin-left:auto}
+.fold[open] > summary + *{animation:fade .25s ease}
+.fold.plain{margin:22px 0 12px}
+.fold.plain > summary{margin-bottom:12px}
+.fold.plain:not([open]) > summary{margin-bottom:0}
+.fold.card:not([open]){padding-bottom:18px}
+.checks.small{margin:8px 0 4px}
+.checks.small li{font-size:13px;line-height:22px}
+.sound.locked{opacity:.55;position:relative}
+.sound.locked::after{content:"플러스";position:absolute;top:-7px;right:6px;font-size:9px;font-weight:700;color:#fff;background:var(--red);border-radius:6px;padding:0 5px;line-height:14px}
+#rest-vid{position:absolute;inset:6px;width:calc(100% - 12px);height:calc(100% - 12px);object-fit:cover;border-radius:28px;background:#cad4bf;z-index:1}
+#rest-vid.mirror{transform:scaleX(-1)}
+.frame-ph::before{content:"동작 이미지·영상 준비 중"}
+
+/* ===== 홈: 집 크게 ===== */
+.home{flex:1;display:flex;flex-direction:column;padding:34px 20px calc(104px + var(--safe-b));min-height:0}
+.home .hello{font-size:28px;margin-top:0}
+.home .sub{font-size:15px;margin-top:6px;margin-bottom:16px}
+.home .house{margin:14px 0 0;border-radius:28px;flex:none}
+.home .house img{width:100%;aspect-ratio:342/263;object-fit:cover}
+.home .room{width:104px;height:56px;padding:9px 14px}
+.home .room b{font-size:15px}
+.home .room small{font-size:12px}
+.home .room.tl{left:12px;top:14px}.home .room.tr{right:12px;top:14px}.home .room.bl{left:12px;bottom:16px}.home .room.br{right:12px;bottom:16px}
+.room.call{animation:nudge 1.2s ease-in-out infinite;box-shadow:0 0 0 3px rgba(185,71,59,.35),0 6px 16px rgba(185,71,59,.25)}
+.home-call{display:flex;align-self:center;align-items:center;gap:10px;margin-top:12px;background:var(--pink);color:var(--red-ink);font-weight:700;font-size:14px;border-radius:18px;padding:8px 14px 8px 8px;animation:fade .3s}
+.home-call .avatar{width:36px;height:36px}
+#s-record .page-title{margin-bottom:14px}
+#s-record .watch{margin:0 0 14px}
+.fold > summary .live{margin-left:auto;font-size:11px}
+.fold .stats{padding:14px 0 0}
+
+/* 홈 장면: 바름이 + 고른 캐릭터 */
+.scene{position:relative;margin-top:14px;flex:1;min-height:150px;max-height:330px;display:flex}
+.scene img,.scene .ph{width:100%;height:100%;object-fit:cover;object-position:center 70%;border-radius:28px;flex:1}
+.scene .ph{font-size:12px}
+.scene-ask{position:absolute;left:50%;top:12px;transform:translateX(-50%);background:#fffef9;border-radius:16px;padding:7px 14px;font-size:14px;font-weight:700;white-space:nowrap;box-shadow:0 4px 12px rgba(51,72,63,.1);z-index:2}
+.scene-ask::after{content:"";position:absolute;left:28%;bottom:-6px;border:6px solid transparent;border-top-color:#fffef9;border-bottom:0}
+.home .room{width:96px;height:50px;padding:7px 12px}
+.home .room b{font-size:14px}.home .room small{font-size:11px}
+.home .room.tl{left:10px;top:10px}.home .room.tr{right:10px;top:10px}.home .room.bl{left:10px;bottom:12px}.home .room.br{right:10px;bottom:12px}
+.home{padding-top:28px}
+/* 바름이 단독 사진은 잘리지 않게 */
+img.fit{object-fit:contain!important;object-position:center bottom!important;background-color:#cfdcb9!important}
+.frame img.fit{object-position:center 80%!important}
+
+/* ===== 정리: 홈은 집 하나가 주인공, 바름이는 집주인으로 위에 작게 ===== */
+.home{padding-top:30px}
+.home .hello{display:none}
+.host{display:flex;align-items:flex-end;gap:12px;margin-bottom:6px}
+.host-pic{width:116px;height:132px;flex:none;border-radius:24px;overflow:hidden;background:#cfdcb9}
+.host-pic img,.host-pic .ph{width:100%;height:100%;object-fit:cover!important;object-position:center 30%!important;border-radius:0}
+.host-pic .ph{font-size:0;padding:0;border:0}
+.host-ask{position:relative;background:#fff;border-radius:22px 22px 22px 6px;padding:14px 16px;font-size:20px;font-weight:700;line-height:28px;letter-spacing:-.3px;margin-bottom:18px;box-shadow:0 6px 18px rgba(51,72,63,.08)}
+.home .house{margin:auto 0;flex:none}
+.home .house img{aspect-ratio:1/1.05;object-fit:cover;object-position:56% 60%;transform:scale(1.06)}
+.home .room{width:100px;height:54px}
+.home .room b{font-size:15px}.home .room small{font-size:12px}
+
+/* 빈 자리: 공사 중 느낌 대신 차분한 카드 */
+.ph{background:#eef2e7;border:0;color:var(--muted)}
+.ph::before{content:"";display:block;width:56px;height:56px;margin:0 auto 10px;border-radius:50%;background:#cfdcb9 url(../pages/assets/img/bareum_face.webp) center/cover;opacity:.9}
+.ph::after{content:"이미지 준비 중";display:block;font-size:11px;font-weight:700;color:var(--red-ink);margin-top:4px;order:-1}
+.frame-ph::before{width:72px;height:72px}
+.how .ph::before{width:40px;height:40px;margin:0}
+.how .ph::after{display:none}
+.frame{background:#d7bda0}
+.login-house{flex:1 1 auto;min-height:120px;max-height:308px;height:auto;aspect-ratio:auto}
+.login{overflow-y:auto}
+.home .house{margin:auto 0}
+
+/* 상단 바 */
+.appbar{position:absolute;left:0;right:0;top:0;height:58px;display:none;align-items:center;justify-content:space-between;padding:0 20px;background:rgba(251,248,240,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:6;border-bottom:1px solid #efece2}
+.appbar.show{display:flex}
+.appbar-brand{display:flex;align-items:center;gap:8px}
+.appbar-brand img{width:30px;height:30px;border-radius:50%;object-fit:cover;background:#cad4bf}
+.appbar-brand b{font-size:20px;font-weight:700;letter-spacing:-.3px}
+.appbar-plan{font-size:12px;font-weight:700;color:var(--muted);background:var(--chip);border-radius:12px;padding:5px 11px}
+.appbar-plan.plus{background:var(--red);color:#fff}
+.screen.tabbed{padding-top:58px}
+.home{padding-top:18px}
+.scroll{padding-top:18px}
+
+/* 상단 바·하단 탭바를 배경과 구별되게 */
+.appbar{background:#dfe8d2;border-bottom:0;box-shadow:0 2px 10px rgba(51,72,63,.08);backdrop-filter:none;-webkit-backdrop-filter:none}
+.appbar-brand b{color:#2f4a3c}
+.appbar-brand img{box-shadow:0 0 0 2px #fff}
+.appbar-plan{background:#fff;color:#4f6656}
+.tabbar{background:#fff;box-shadow:0 -2px 12px rgba(51,72,63,.08)}
+
+/* 상단 바: 반투명 + 흐림, 내용이 바 아래로 비쳐 보이게 */
+.screen.tabbed{padding-top:0}
+.screen.tabbed .scroll{padding-top:76px}
+.screen.tabbed .home{padding-top:76px}
+.appbar{background:rgba(223,232,210,.72);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);transition:background .25s,box-shadow .25s;box-shadow:none}
+.appbar.scrolled{background:rgba(223,232,210,.6);box-shadow:0 4px 16px rgba(51,72,63,.10)}
+.appbar-brand{cursor:pointer}.appbar-brand:active{opacity:.7}
+
+/* ===== 홈: 피그마 원래 모습 ===== */
+.home-f .date{margin-top:2px}
+.home-f .hello{display:block;font-size:27px;margin-top:8px}
+.home-f .sub{font-size:13px;margin:4px 0 0}
+.home-f .house{margin:18px 0 26px;border-radius:28px;overflow:hidden;position:relative}
+.home-f .house img{width:100%;aspect-ratio:342/263;object-fit:cover;transform:none}
+.home-f .room{width:98px;height:50px;padding:7px 12px}
+.home-f .room b{font-size:13px}.home-f .room small{font-size:11px}
+.home-f .room.tl{left:8px;top:12px}.home-f .room.tr{right:8px;top:12px}.home-f .room.bl{left:8px;bottom:22px}.home-f .room.br{right:8px;bottom:22px}
+.home-sec{font-size:16px;font-weight:700;margin-bottom:12px}
+.home-f .stats{margin-bottom:16px}
+
+/* 방 미리보기 */
+.peek{position:absolute;inset:0;z-index:2;animation:fadeIn .2s;border-radius:28px;overflow:hidden}
+.peek > img{width:100%;height:100%;object-fit:cover;animation:pop .3s ease}
+.peek-bar{position:relative;margin:-14px 0 18px;display:flex;align-items:center;gap:10px;background:rgba(255,254,249,.94);border-radius:18px;padding:8px 8px 8px 8px;box-shadow:0 6px 16px rgba(51,72,63,.15)}
+.peek-bar .avatar{width:38px;height:38px}
+.peek-bar p{flex:1;font-size:14px;font-weight:700;line-height:20px}
+.peek-go{background:var(--red);color:#fff;font-size:13px;font-weight:700;border-radius:13px;padding:9px 12px;flex:none}
+.home-f .room{z-index:3}
+.home-f .house:has(.peek:not([hidden])) .room:not(.peeking){opacity:.5}
+.room.peeking{transform:scale(1.05);box-shadow:0 0 0 2px var(--red),0 6px 14px rgba(185,71,59,.25)}
+.peek-bar .avatar{width:38px!important;height:38px!important;aspect-ratio:1!important;transform:none!important;flex:none}
+.peek > img{position:absolute;inset:0;width:100%!important;height:100%!important;aspect-ratio:auto!important}
+
+/* 미리보기: 사진을 키우지 않고 그 방만 밝게 비춤 (화질 그대로) */
+.peek{animation:fadeIn .2s}
+.spot{position:absolute;border-radius:22px;box-shadow:0 0 0 999px rgba(40,56,48,.48),inset 0 0 0 3px rgba(255,255,255,.9);transition:left .3s ease,top .3s ease,width .3s ease,height .3s ease;pointer-events:none}
+.peek{pointer-events:none}
+.peek-bar[hidden]{display:none!important}
+.peek-bar{animation:fade .2s ease}
+
+/* 고른 방(마우스 올림/탭)이 빨간색으로: 거실만 고정 선택돼 보이지 않게 */
+.room.peeking{background:var(--red);color:#fff;box-shadow:0 6px 14px rgba(185,71,59,.3)}
+.room.peeking small{color:#fff4e8}
+.room.peeking.locked::after{background:#fff;color:var(--red-ink)}
+.home-f .house:has(.peek:not([hidden])) .room:not(.peeking){opacity:.6}
+
+/* 홈 맨 아래: 바름이 상태 카드 */
+.invite-card.status{background:var(--green)}
+.invite-card.status.alert{background:var(--pink)}
+.call-body{flex:1;display:flex;flex-direction:column;gap:3px;min-width:0}
+.call-body small{font-size:11px;font-weight:700;color:var(--muted)}
+.invite-card.alert .call-body small{color:var(--red-ink)}
+.call-body p{font-size:15px;font-weight:700;line-height:22px}
+.call-bar{display:block;height:6px;border-radius:3px;background:rgba(255,255,255,.8);overflow:hidden;margin-top:4px}
+.call-bar i{display:block;height:100%;width:0;background:#7fa37c;border-radius:3px;transition:width .8s ease}
+.invite-card.alert .call-bar i{background:var(--red)}
+
+/* 감지 설명 */
+.g-lead{font-size:13px;color:var(--muted);margin:-4px 0 12px}
+.g-sense{display:flex;flex-direction:column;gap:10px}
+.g-sense div{background:#fff;border-radius:18px;padding:14px}
+.g-sense b{font-size:15px}
+.g-sense span{float:right;font-size:11px;font-weight:700;color:var(--red-ink);background:var(--pink);border-radius:8px;padding:2px 8px}
+.g-sense p{font-size:13px;color:var(--muted);line-height:20px;margin-top:6px;clear:both}
+.g-sense em{font-style:normal;font-weight:700;color:var(--ink)}
+.g-note{font-size:12px;color:var(--muted);background:var(--green);border-radius:14px;padding:10px 12px;margin-top:10px;line-height:18px}
+.peek-txt{flex:1;min-width:0}
+.peek-txt p{font-size:14px;font-weight:700;line-height:20px}
+.peek-txt small{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+.habit-how{display:block;width:100%;text-align:right;font-size:12px;color:var(--muted);margin:-6px 0 16px}
+.habit-how u{color:var(--red-ink);text-decoration:none;font-weight:700;margin-left:4px}
+
+.perm-list{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:8px}
+.perm-list li{display:flex;flex-direction:column;background:var(--bg);border-radius:12px;padding:8px 12px}
+.perm-list b{font-size:13px}
+.perm-list span{font-size:12px;color:var(--muted);margin-top:1px}
+#s-onboard .ob-step[data-step="3"] .ob-small{width:150px;height:150px;margin:16px auto 12px}
+.how small{line-height:16px}
+/* 작은 화면에서도 첫 만남 버튼이 보이게 */
+#s-onboard .ob-step.on{min-height:0;overflow-y:auto;scrollbar-width:none}
+#s-onboard .ob-step::-webkit-scrollbar{display:none}
+.how img.fit{object-fit:cover!important;object-position:center 20%!important}
+#s-onboard .ob-step > .btn{position:sticky;bottom:0;z-index:2;box-shadow:0 -10px 0 var(--bg)}
+.plan .trial{font-size:12px;font-weight:700;color:var(--red-ink);background:var(--pink);border-radius:10px;padding:6px 10px;margin:8px 0 0;display:inline-block}
+
+/* ===== 방 안으로 들어가기 ===== */
+.home-f .house > img{transition:transform .48s cubic-bezier(.5,0,.75,0),filter .48s}
+.home-f .house > img.zoom-in{transform:scale(3.2)!important;filter:brightness(1.05)}
+.home-f .house.entering .room,.home-f .house.entering .peek{opacity:0!important;transition:opacity .2s}
+#s-rest.on .frame{animation:roomIn .45s ease-out}
+@keyframes roomIn{from{transform:scale(1.08);opacity:.4}to{transform:none;opacity:1}}
+
+/* 쉼 화면: 방 배경 + 캐릭터 */
+.rest-bg{position:absolute;inset:6px;width:calc(100% - 12px);height:calc(100% - 12px);object-fit:cover;border-radius:28px;z-index:0}
+.frame img.cutout{object-fit:contain!important;object-position:center bottom!important;background:none!important;height:calc(100% - 18px);top:auto;bottom:6px;z-index:1;filter:drop-shadow(0 6px 10px rgba(51,72,63,.18))}
+.frame img:not(.cutout):not(.rest-bg){z-index:1}
+.frame-ph{inset:auto 18px 16px 18px!important;height:auto!important;padding:10px 12px!important;flex-direction:row!important;gap:10px;justify-content:flex-start!important;background:rgba(255,254,249,.9)!important;border-radius:18px!important;font-size:12px!important;text-align:left!important;z-index:2;backdrop-filter:blur(4px)}
+.frame-ph::before{width:36px!important;height:36px!important;margin:0!important;flex:none}
+.frame-ph::after{content:"캐릭터 준비 중"!important;order:2!important;margin:0 0 0 auto!important;white-space:nowrap}
+
+/* 방으로 들어갈 때 화면 가득 방 그림 */
+.room-enter{position:absolute;inset:0;z-index:40;pointer-events:none;opacity:0;transition:opacity .3s ease;background:#f3e6d3}
+.room-enter.show{opacity:1}
+.room-enter img{width:100%;height:100%;object-fit:cover;transform:scale(1.18);transition:transform .6s ease-out}
+.room-enter.show img{transform:scale(1)}
+.rest-bg{object-position:center 65%}
+
+/* 로그인 */
+.auth-sheet{align-items:stretch;text-align:left;gap:10px}
+.auth-tabs{display:flex;background:var(--chip);border-radius:14px;padding:4px;margin-bottom:6px}
+.auth-tabs button{flex:1;height:38px;border-radius:11px;font-size:14px;font-weight:700;color:var(--muted)}
+.auth-tabs button.on{background:#fff;color:var(--ink);box-shadow:0 2px 6px rgba(51,72,63,.08)}
+.field{display:flex;flex-direction:column;gap:6px}
+.field span{font-size:12px;font-weight:700;color:var(--muted)}
+.field input{font:inherit;font-size:15px;height:48px;border-radius:14px;border:1.5px solid var(--line);background:#fff;padding:0 14px;color:var(--ink);outline:none}
+.field input:focus{border-color:var(--red)}
+.field[hidden]{display:none}
+.auth-err{min-height:18px;font-size:13px;color:var(--red-ink);font-weight:700}
+.auth-mode{font-size:11px;color:var(--muted);text-align:center}
+.auth-sheet .link{align-self:center}
+.auth-sheet .btn[disabled]{opacity:.6}
+.account{display:flex;align-items:center;justify-content:space-between}
+.account small{display:block;font-size:11px}
+.account b{font-size:15px}
+
+/* 투명 배경 캐릭터: 쉼 완료·설명 칸에서도 거실 위에 */
+.done-img.cutout{object-fit:contain!important;object-position:center bottom;background:url(../pages/assets/img/room_living_bg.webp) center 65%/cover;padding-top:14px}
+.how img.cutout{object-fit:contain!important;object-position:center bottom!important;background:url(../pages/assets/img/room_living_bg.webp) center 70%/cover;padding-top:4px}
